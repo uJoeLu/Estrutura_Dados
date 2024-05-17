@@ -11,7 +11,7 @@ public class Main {
         System.out.println("Get key2: " + hashTable.get("key2")); // Output: value2
 
         hashTable.remove("key2");
-        System.out.println("Get key2 após remoção: " + hashTable.get("key2")); // Output: null
+        System.out.println("Get key2 apos remocao: " + hashTable.get("key2")); // Output: null
 
         // Testando a LRUCache
         System.out.println("\nTestando LRUCache...");
