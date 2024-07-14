@@ -1,7 +1,7 @@
 import java.util.LinkedList;
 
 public class HashTable<K, V> {
-    private static final int size = 16;
+    private int size = 16;
     private LinkedList<HashNode<K, V>>[] buckets;
 
     public HashTable() {
