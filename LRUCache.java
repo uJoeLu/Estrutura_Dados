@@ -1,15 +1,16 @@
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Map;
 
 public class LRUCache<K, V> {
     private int capacity;
     private Map<K, V> cache;
-    private DoublyLinkedList<K> lruList;
+    private LinkedList<K> lruList;
 
     public LRUCache(int capacity) {
         this.capacity = capacity;
         cache = new HashMap<>();
-        lruList = new DoublyLinkedList<>();
+        lruList = new LinkedList<>();
     }
 
     public void put(K key, V value) {
