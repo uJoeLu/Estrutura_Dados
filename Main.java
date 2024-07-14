@@ -19,16 +19,15 @@ public class Main {
         lruCache.put(1, "one");
         lruCache.put(2, "two");
         lruCache.put(3, "three");
+        lruCache.imprimirTabela();
+        System.out.println("************************");
 
-        System.out.println("Get 1: " + lruCache.get(1)); // Output: one
-        lruCache.put(4, "four"); // Este put deve remover o item mais antigo (key 2)
+        lruCache.put(4, "four"); // Este put deve remover o item mais antigo (key 1)
+        lruCache.imprimirTabela();
+        System.out.println("***************************");
 
-        System.out.println("Get 2: " + lruCache.get(2)); // Output: null
-        System.out.println("Get 3: " + lruCache.get(3)); // Output: three
-        System.out.println("Get 4: " + lruCache.get(4)); // Output: four
 
-        lruCache.put(5, "five"); // Este put deve remover o item mais antigo (key 1)
-        System.out.println("Get 1: " + lruCache.get(1)); // Output: null
-        System.out.println("Get 5: " + lruCache.get(5)); // Output: five
+        lruCache.put(5, "five"); // Este put deve remover o item mais antigo (key 2)
+        lruCache.imprimirTabela();
     }
 }

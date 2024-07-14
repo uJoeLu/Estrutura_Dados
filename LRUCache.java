@@ -33,4 +33,11 @@ public class LRUCache<K, V> {
         }
         return null;
     }
+    public void imprimirTabela() {
+        for (int i = 0; i < lruList.size(); i++) {
+            K key = lruList.get(i);
+            V value = cache.get(key);
+            System.out.println("Índice " + i + ": " + key + " = " + value);
+        }
+    }
 }
