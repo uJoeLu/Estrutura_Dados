@@ -1,43 +1,75 @@
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
 
-public class LRUCache<K, V> {
-    private int capacity;
-    private Map<K, V> cache;
-    private LinkedList<K> lruList;
+class LRUCache<K, V> {
+    private class Node {
+        K key;
+        V value;
+        Node prev;
+        Node next;
+
+        public Node(K key, V value) {
+            this.key = key;
+            this.value = value;
+        }
+    }
+
+    private final int capacity;
+    private HashMap<K, Node> map;
+    private Node head, tail;
 
     public LRUCache(int capacity) {
         this.capacity = capacity;
-        cache = new HashMap<>();
-        lruList = new LinkedList<>();
-    }
-
-    public void put(K key, V value) {
-        if (cache.containsKey(key)) {
-            lruList.remove(key);
-        } else if (cache.size() >= capacity) {
-            K lruKey = lruList.removeLast();
-            cache.remove(lruKey);
-        }
-        cache.put(key, value);
-        lruList.addFirst(key);
+        this.map = new HashMap<>();
+        this.head = new Node(null, null);
+        this.tail = new Node(null, null);
+        head.next = tail;
+        tail.prev = head;
     }
 
     public V get(K key) {
-        if (cache.containsKey(key)) {
-            V value = cache.get(key);
-            lruList.remove(key);
-            lruList.addFirst(key);
-            return value;
+        if (map.containsKey(key)) {
+            Node node = map.get(key);
+            remove(node);
+            insertAtHead(node);
+            return node.value;
         }
         return null;
     }
+
+    public void put(K key, V value) {
+        if (map.containsKey(key)) {
+            Node node = map.get(key);
+            node.value = value;
+            remove(node);
+            insertAtHead(node);
+        } else {
+            if (map.size() == capacity) {
+                map.remove(tail.prev.key);
+                remove(tail.prev);
+            }
+            Node newNode = new Node(key, value);
+            insertAtHead(newNode);
+            map.put(key, newNode);
+        }
+    }
+
+    private void remove(Node node) {
+        node.prev.next = node.next;
+        node.next.prev = node.prev;
+    }
+
+    private void insertAtHead(Node node) {
+        node.next = head.next;
+        node.prev = head;
+        head.next.prev = node;
+        head.next = node;
+    }
+
     public void imprimirTabela() {
-        for (int i = 0; i < lruList.size(); i++) {
-            K key = lruList.get(i);
-            V value = cache.get(key);
-            System.out.println("Índice " + i + ": " + key + " = " + value);
+        Node current = head.next;
+        while (current != tail) {
+            System.out.println("Key: " + current.key + ", Value: " + current.value);
+            current = current.next;
         }
     }
 }

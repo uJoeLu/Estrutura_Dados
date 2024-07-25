@@ -26,7 +26,6 @@ public class Main {
         lruCache.imprimirTabela();
         System.out.println("***************************");
 
-
         lruCache.put(5, "five"); // Este put deve remover o item mais antigo (key 2)
         lruCache.imprimirTabela();
     }
