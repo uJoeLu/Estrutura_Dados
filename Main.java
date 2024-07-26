@@ -22,11 +22,11 @@ public class Main {
         lruCache.imprimirTabela();
         System.out.println("************************");
 
-        lruCache.put(4, "four"); // Este put deve remover o item mais antigo (key 1)
+        lruCache.put(4, "four");
         lruCache.imprimirTabela();
         System.out.println("***************************");
 
-        lruCache.put(5, "five"); // Este put deve remover o item mais antigo (key 2)
+        lruCache.put(5, "five");
         lruCache.imprimirTabela();
     }
 }
