@@ -7,11 +7,11 @@ public class Main {
         hashTable.put("key2", "value2");
         hashTable.put("key3", "value3");
 
-        System.out.println("Get key1: " + hashTable.get("key1")); // Output: value1
-        System.out.println("Get key2: " + hashTable.get("key2")); // Output: value2
+        System.out.println("Get key1: " + hashTable.get("key1")); 
+        System.out.println("Get key2: " + hashTable.get("key2")); 
 
         hashTable.remove("key2");
-        System.out.println("Get key2 apos remocao: " + hashTable.get("key2")); // Output: null
+        System.out.println("Get key2 apos remocao: " + hashTable.get("key2"));
 
         // Testando a LRUCache
         System.out.println("\nTestando LRUCache...");
